@@ -1,0 +1,39 @@
+import unittest
+
+class Node(object):
+  def __init__(self, car = None, cdr = None):
+    self.car = car
+    if type(cdr) is Node or cdr is None:
+      self.cdr = cdr
+    else:
+      raise(TypeError)
+
+  def __str__(self):
+    res = []
+    i = self
+    while(i.cdr):
+      res.append(i.car)
+      i = i.cdr
+    res.append(i.car)
+    return " -> ".join([str(x) for x in res])
+
+def cons(v, n):
+  return Node(v, n)
+
+def dedupe(linked_list):
+  print(linked_list)
+  items = [linked_list.car]
+  last, cur = linked_list, linked_list.cdr
+  while(cur):
+    print(items)
+    if cur.car in items:
+      last.cdr = cur.cdr # skip cur in the list
+    else:
+      items.append(cur.car)
+      last, cur = cur, cur.cdr
+  return linked_list
+
+a = cons(1, cons(1, cons(1, cons(4, cons(5, None)))))
+print(a)
+dedupe(a)
+print(a)

@@ -1,0 +1,15 @@
+import unittest
+from pprint import pprint
+
+
+def rotate_90 (mat):
+    """mat[i][j] -> mat ["""
+    return [[i[j] for i in mat] for j in xrange(0,len(mat))]
+
+class Rotate90TestCase(unittest.TestCase):
+    def runTest(self):
+        pprint(rotate_90([[1,2],[3,4]]))
+        self.assertEqual(rotate_90([[1, 2], [3, 4]]), [[3, 1], [4, 2]])
+
+if __name__ == "__main__":
+    unittest.main()
